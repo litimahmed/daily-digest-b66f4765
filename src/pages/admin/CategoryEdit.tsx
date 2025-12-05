@@ -129,7 +129,7 @@ export default function CategoryEdit() {
     }
 
     updateCategory(
-      { categoryId: parseInt(id), formData },
+      { categoryId: id, formData },
       {
         onSuccess: () => {
           navigate("/admin/categories");
