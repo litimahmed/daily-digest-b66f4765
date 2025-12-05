@@ -46,6 +46,10 @@ import AdminCategoryEdit from "./pages/admin/CategoryEdit";
 import AdminServiceList from "./pages/admin/ServiceList";
 import AdminServiceCreate from "./pages/admin/ServiceCreate";
 import AdminServiceEdit from "./pages/admin/ServiceEdit";
+import AdminProfessionalList from "./pages/admin/ProfessionalList";
+import AdminProfessionalCreate from "./pages/admin/ProfessionalCreate";
+import AdminProfessionalDetail from "./pages/admin/ProfessionalDetail";
+import AdminProfessionalEdit from "./pages/admin/ProfessionalEdit";
 
 const queryClient = new QueryClient();
 
@@ -89,6 +93,10 @@ const App = () => (
           <Route path="/admin/services" element={<ProtectedRoute><AdminServiceList /></ProtectedRoute>} />
           <Route path="/admin/services/create" element={<ProtectedRoute><AdminServiceCreate /></ProtectedRoute>} />
           <Route path="/admin/services/edit/:id" element={<ProtectedRoute><AdminServiceEdit /></ProtectedRoute>} />
+          <Route path="/admin/professionals" element={<ProtectedRoute><AdminProfessionalList /></ProtectedRoute>} />
+          <Route path="/admin/professionals/create" element={<ProtectedRoute><AdminProfessionalCreate /></ProtectedRoute>} />
+          <Route path="/admin/professionals/:id" element={<ProtectedRoute><AdminProfessionalDetail /></ProtectedRoute>} />
+          <Route path="/admin/professionals/:id/edit" element={<ProtectedRoute><AdminProfessionalEdit /></ProtectedRoute>} />
           
           <Route path="*" element={<NotFound />} />
         </Routes>
