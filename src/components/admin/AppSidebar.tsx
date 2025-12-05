@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { LayoutDashboard, Users, Settings, BarChart3, Zap, FileText, ChevronDown, Info, Phone, Handshake, Eye, Plus, Layers, Shield, Ban, FolderTree, Briefcase } from "lucide-react";
+import { LayoutDashboard, Users, Settings, BarChart3, Zap, FileText, ChevronDown, Info, Phone, Handshake, Eye, Plus, Layers, Shield, Ban, FolderTree, Briefcase, UserCog } from "lucide-react";
 import { useContacts } from "@/hooks/admin/useContacts";
 import { NavLink } from "@/components/admin/NavLink";
 import { useLocation } from "react-router-dom";
@@ -29,6 +29,7 @@ export function AppSidebar() {
   const isPrivacyActive = isPathStartsWith("/admin/privacy-policy");
   const isCategoriesActive = isPathStartsWith("/admin/categories");
   const isServicesActive = isPathStartsWith("/admin/services");
+  const isProfessionalsActive = isPathStartsWith("/admin/professionals");
   
   const [contentOpen, setContentOpen] = useState(true);
   const [aboutUsOpen, setAboutUsOpen] = useState(isAboutUsActive);
@@ -38,6 +39,7 @@ export function AppSidebar() {
   const [privacyOpen, setPrivacyOpen] = useState(isPrivacyActive);
   const [categoriesOpen, setCategoriesOpen] = useState(isCategoriesActive);
   const [servicesOpen, setServicesOpen] = useState(isServicesActive);
+  const [professionalsOpen, setProfessionalsOpen] = useState(isProfessionalsActive);
 
   return (
     <Sidebar 
@@ -563,6 +565,82 @@ export function AppSidebar() {
                       activeClassName="bg-primary text-primary-foreground"
                     >
                       <Briefcase className="h-[18px] w-[18px]" />
+                    </NavLink>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              )}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+
+        {/* Professionals Section */}
+        <SidebarGroup className="px-3 py-2">
+          {open && (
+            <SidebarGroupLabel className="text-[10px] font-semibold text-muted-foreground/70 uppercase tracking-widest px-3 mb-1">
+              Professionals
+            </SidebarGroupLabel>
+          )}
+
+          <SidebarGroupContent>
+            <SidebarMenu className="space-y-0.5">
+              {open ? (
+                <Collapsible open={professionalsOpen} onOpenChange={setProfessionalsOpen}>
+                  <CollapsibleTrigger asChild>
+                    <SidebarMenuItem>
+                      <SidebarMenuButton
+                        className={`
+                          px-3 py-2.5 rounded-lg transition-all duration-150
+                          text-muted-foreground hover:text-foreground
+                          hover:bg-sidebar-accent
+                          flex items-center justify-between w-full
+                          ${isProfessionalsActive ? "bg-sidebar-accent text-foreground font-medium" : ""}
+                        `}
+                      >
+                        <div className="flex items-center gap-3">
+                          <UserCog className={`h-[18px] w-[18px] ${isProfessionalsActive ? "text-primary" : ""}`} />
+                          <span className="text-sm">Professionals</span>
+                        </div>
+                        <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${professionalsOpen ? "rotate-180" : ""}`} />
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  </CollapsibleTrigger>
+                  <CollapsibleContent className="mt-0.5 space-y-0.5">
+                    <SidebarMenuItem>
+                      <SidebarMenuButton asChild>
+                        <NavLink
+                          to="/admin/professionals"
+                          end
+                          className="ml-6 px-3 py-1.5 rounded-md transition-all duration-150 text-muted-foreground hover:text-foreground hover:bg-sidebar-accent flex items-center gap-2.5 text-[13px] w-[calc(100%-24px)]"
+                          activeClassName="bg-primary/10 text-primary font-medium"
+                        >
+                          <Eye className="h-3.5 w-3.5" />
+                          <span>View Professionals</span>
+                        </NavLink>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                    <SidebarMenuItem>
+                      <SidebarMenuButton asChild>
+                        <NavLink
+                          to="/admin/professionals/create"
+                          className="ml-6 px-3 py-1.5 rounded-md transition-all duration-150 text-muted-foreground hover:text-foreground hover:bg-sidebar-accent flex items-center gap-2.5 text-[13px] w-[calc(100%-24px)]"
+                          activeClassName="bg-primary/10 text-primary font-medium"
+                        >
+                          <Plus className="h-3.5 w-3.5" />
+                          <span>Add Professional</span>
+                        </NavLink>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  </CollapsibleContent>
+                </Collapsible>
+              ) : (
+                <SidebarMenuItem>
+                  <SidebarMenuButton asChild>
+                    <NavLink
+                      to="/admin/professionals"
+                      className="px-2 py-2.5 justify-center rounded-lg transition-all duration-150 text-muted-foreground hover:text-foreground hover:bg-sidebar-accent flex items-center"
+                      activeClassName="bg-primary text-primary-foreground"
+                    >
+                      <UserCog className="h-[18px] w-[18px]" />
                     </NavLink>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
