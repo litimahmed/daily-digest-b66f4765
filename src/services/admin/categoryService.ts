@@ -31,28 +31,28 @@ export const categoryService = {
   /**
    * Update an existing category with FormData (supports file upload)
    */
-  async updateCategory(categoryId: number, formData: FormData): Promise<CategoryUpdateResponse> {
+  async updateCategory(categoryId: string | number, formData: FormData): Promise<CategoryUpdateResponse> {
     return apiClient.putFormData<CategoryUpdateResponse>(`/admins/categories/modifier/${categoryId}/`, formData);
   },
 
   /**
    * Delete a category permanently
    */
-  async deleteCategory(categoryId: number): Promise<CategoryDeleteResponse> {
+  async deleteCategory(categoryId: string | number): Promise<CategoryDeleteResponse> {
     return apiClient.delete<CategoryDeleteResponse>(`/admins/categories/supprimer/${categoryId}/`);
   },
 
   /**
    * Suspend a category (set active = false)
    */
-  async suspendCategory(categoryId: number): Promise<CategorySuspendResponse> {
+  async suspendCategory(categoryId: string | number): Promise<CategorySuspendResponse> {
     return apiClient.put<CategorySuspendResponse>(`/admins/categories/suspendre/${categoryId}/`, {});
   },
 
   /**
    * Resume/Activate a category (set active = true)
    */
-  async resumeCategory(categoryId: number): Promise<CategorySuspendResponse> {
+  async resumeCategory(categoryId: string | number): Promise<CategorySuspendResponse> {
     return apiClient.put<CategorySuspendResponse>(`/admins/categories/activer/${categoryId}/`, {});
   },
 };

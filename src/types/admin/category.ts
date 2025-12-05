@@ -5,7 +5,7 @@
  */
 
 export interface Category {
-  categorie_id: number;
+  categorie_id: string | number;
   nom_categorie: string;
   description_categorie: string;
   couleur_theme: string;

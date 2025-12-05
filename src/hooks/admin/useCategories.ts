@@ -56,7 +56,7 @@ export function useUpdateCategory() {
   const { toast } = useToast();
 
   return useMutation({
-    mutationFn: ({ categoryId, formData }: { categoryId: number; formData: FormData }) => 
+    mutationFn: ({ categoryId, formData }: { categoryId: string | number; formData: FormData }) => 
       categoryService.updateCategory(categoryId, formData),
     onSuccess: (response) => {
       queryClient.invalidateQueries({ queryKey: ["admin-categories"] });
